@@ -1,5 +1,5 @@
 import urlparse
 def application(env, start_response):
-    body = "\n".join(environ.get('QUERY_STRING').split("&"))
+    body = "\n".join(env.get('QUERY_STRING').split("&"))
     start_response('200 OK', [('Content-Type', 'text/plain')])
     return [body]   
