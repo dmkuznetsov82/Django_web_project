@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.contrib import admin
-from ask.qa import views
+from ask.qa.views import test
 urlpatterns = [
-    url(r'^admin/', views),
+    url(r'^$', test),
 ]
