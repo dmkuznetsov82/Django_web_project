@@ -10,4 +10,4 @@ sudo ln -fs /home/box/web/etc/gunicorn.conf /etc/gunicorn.d/test
 sudo ln -fs /home/box/web/etc/django.conf /etc/gunicorn.d/django
 sudo /etc/init.d/gunicorn restart
 
-#sudo /etc/init.d/mysql start
+sudo /etc/init.d/mysql start
