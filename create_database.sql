@@ -1,1 +1,1 @@
-mysql -uroot -e "create database default"
+mysql -uroot -e "create database Test"
