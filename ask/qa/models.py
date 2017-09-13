@@ -31,6 +31,12 @@ class Answer(models.model):
 #QuestionManager - менеджер модели Question
 #new - метод возвращающий последние добавленные вопросы
 #popular - метод возвращающий вопросы отсортированные по рейтингу
-class QuestionManager(object):
-  def new: pass
-  def popular: pass
+class QuestionManager(models.Manager):                                          
+        def new(self):                                                              
+                return self.order_by('-added_at')                                                          
+        def popular(self):                                                          
+                return self.order_by('-rating')
+
+class Question(models.Model):                                                   
+        objects = QuestionManager() 
+
