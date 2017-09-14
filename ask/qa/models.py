@@ -16,7 +16,7 @@ class Answer(models.Model):
   question = models.TextField()
   author = models.CharField(max_length=255)
   
-  class CustomUser(User): pass
+class CustomUser(User): pass
   
 class QuestionManager(models.Manager):                                          
         def new(self):                                                              
