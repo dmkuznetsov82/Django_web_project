@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User 
 
+class CustomUser(User): pass
+
 class QuestionManager(models.Manager):                                          
         def new(self):                                                              
                 return self.order_by('-added_at')                                                          
@@ -22,6 +24,4 @@ class Answer(models.Model):
   added_at = models.DateTimeField()
   question = models.TextField()
   author = models.ForeignKey(CustomUser)
-  
-class CustomUser(User): pass
-  
+   
