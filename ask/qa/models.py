@@ -13,7 +13,7 @@ class Question(models.Model):
   text = models.TextField()
   added_at = models.DateTimeField()
   rating = models.IntegerField()
-  author = models.CharField(max_length=255)
+  author = models.ForeignKey(CustomUser)
   likes = models.TextField()
   objects = QuestionManager() 
 
@@ -21,7 +21,7 @@ class Answer(models.Model):
   text = models.TextField()
   added_at = models.DateTimeField()
   question = models.TextField()
-  author = models.CharField(max_length=255)
+  author = models.ForeignKey(CustomUser)
   
 class CustomUser(User): pass
   
