@@ -13,8 +13,8 @@ class Question(models.Model):
   text = models.TextField()
   added_at = models.DateTimeField()
   rating = models.IntegerField()
-  author = models.ForeignKey(User)
-  likes = ManyToManyField(User)
+  author = models.ForeignKey(User,related_name='question_author')
+  likes = ManyToManyField(User,related_name='question_likes')
   objects = QuestionManager() 
 
 class Answer(models.Model):
