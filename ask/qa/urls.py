@@ -4,5 +4,5 @@ from qa.views import test
 urlpatterns = [
     url(r'^$', new),
     url(r'^popular/',popular),
-    url(r'^question/',question)
+    url(r'^question/?P<id>\w+/$',question)
 ]
