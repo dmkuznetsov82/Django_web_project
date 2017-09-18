@@ -11,15 +11,14 @@ def new (request,*args,**kwargs):
 def popular (request,*args,**kwargs): 
     return HttpResponse('OK')
 
-@reguire_GET
+@require_GET
 def question_details (request,id): 
     question = get_object_or_404(Question, id=id)
     try:
         answer = Answer.object.get(question=question)
-    except: Answer.DoesNotExist:
+    except Answer.DoesNotExist:
             answer = None 
-    return render(request, {
-        '/question/question_details.html',
-        'question':question,
-        'answers:'answer.all()[:]
+    return render(request, '/question/question_details.html', {
+        'question' : question,
+        'answers' : answer.all()[:],
     })
