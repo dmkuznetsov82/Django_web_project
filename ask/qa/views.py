@@ -15,7 +15,7 @@ def popular (request,*args,**kwargs):
 def question_details (request,id): 
     question = get_object_or_404(Question, id=id)
     try:
-        answer = question.answers.filter()
+        answer = Answer.object.get(question=question)
     except: Answer.DoesNotExist:
             answer = None 
     return render(request, {
