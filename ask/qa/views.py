@@ -14,4 +14,6 @@ def popular (request,*args,**kwargs):
 @reguire_GET
 def question_details (request,id): 
     question = get_object_or_404(Question, id=id)
-    return render(request, '/question/question_details.html','question':question)
+    return render(request, {
+        '/question/question_details.html','question':question,
+    })
