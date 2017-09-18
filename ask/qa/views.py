@@ -14,6 +14,12 @@ def popular (request,*args,**kwargs):
 @reguire_GET
 def question_details (request,id): 
     question = get_object_or_404(Question, id=id)
+    try:
+        answer = question.answers.filter()
+    except: Answer.DoesNotExist:
+            answer = None 
     return render(request, {
-        '/question/question_details.html','question':question,
+        '/question/question_details.html',
+        'question':question,
+        'answers:'answer.all()[:]
     })
