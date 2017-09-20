@@ -6,10 +6,10 @@ def test (request,*args,**kwargs):
     return HttpResponse('OK')
 
 def new (request,*args,**kwargs): 
-    return HttpResponse('OK')
+    return HttpResponse('New')
 
 def popular (request,*args,**kwargs): 
-    return HttpResponse('OK')
+    return HttpResponse('Popular')
 
 @require_GET
 def question_details (request,id): 
