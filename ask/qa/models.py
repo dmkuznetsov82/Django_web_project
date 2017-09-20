@@ -23,4 +23,6 @@ class Answer(models.Model):
   added_at = models.DateTimeField()
   question = models.ForeignKey(Question, null=True, on_delete=models.SET_NULL)
   author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+
+  object = QuestionManager()
    
