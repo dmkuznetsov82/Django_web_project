@@ -6,7 +6,7 @@ def test (request,*args,**kwargs):
     return HttpResponse('OK')
 
 def new_questions (request,*args,**kwargs): 
-    return HttpResponse('New')
+    return HttpResponse('New questions')
 
 def popular (request,*args,**kwargs): 
     return HttpResponse('Popular')
