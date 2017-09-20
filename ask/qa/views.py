@@ -5,7 +5,7 @@ from django.views.decorators.http import require_GET
 def test (request,*args,**kwargs): 
     return HttpResponse('OK')
 
-def new (request,*args,**kwargs): 
+def new_questions (request,*args,**kwargs): 
     return HttpResponse('New')
 
 def popular (request,*args,**kwargs): 
