@@ -9,8 +9,24 @@ from qa.models import Question, Answer
 def test (request,*args,**kwargs): 
     return HttpResponse('OK')
 
-def index (request,*args,**kwargs): 
-    return HttpResponse('Index')
+@require_GET
+def index (request): 
+    try:
+        page = int(request.GET.get("page"))
+    except ValueError:
+        page = 1
+    except TypeError:
+        page = 1
+        
+    questions = Question.objects.popular()
+    limit = 10
+    paginator = Paginator(questions,limit)
+    page = paginator.page(page)
+    
+    return render(request, 'index.html', {
+        'paginator': paginator,
+        'questions': page.object_list,
+        'page': page, })
 
 @require_GET
 def popular (request): 
