@@ -16,10 +16,10 @@ def popular (request,*args,**kwargs):
 def question_details (request,id): 
     question = get_object_or_404(Question, id=id)
     try:
-        answer = Answer.object.filter(question=question)
+        answers = Answer.object.filter(question=question)
     except Answer.DoesNotExist:
-            answer = None 
+            answers = None 
     return render(request, 'question_details.html', {
         'question' : question,
-        'answers' : answer.all()[:],
+        'answers' : answers.all()[:],
     })
