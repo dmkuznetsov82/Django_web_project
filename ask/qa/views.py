@@ -21,7 +21,7 @@ def popular (request):
     except TypeError:
         page = 1
         
-    questions = Question.object.popular()
+    questions = Question.objects.popular()
     limit = 10
     paginator = Paginator(questions,limit)
     page = paginator.page(page)
@@ -35,7 +35,7 @@ def popular (request):
 def question_details (request,id): 
     question = get_object_or_404(Question, id=id)
     try:
-        answers = Answer.object.filter(question=question)
+        answers = Answer.objects.filter(question=question)
     except Answer.DoesNotExist:
             answers = None 
     return render(request, 'question_details.html', {
