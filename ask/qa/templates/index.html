@@ -1,4 +1,5 @@
 {% for question in questions %}
+<h1>Latest Questions</h1>
     <p>{{ question.title }}</p>
     <a href="/question/{{ question.id }}/">{{ question.title }}</a>
 {% endfor %}
