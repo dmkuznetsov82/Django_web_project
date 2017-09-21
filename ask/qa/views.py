@@ -12,7 +12,7 @@ def test (request,*args,**kwargs):
 def index (request,*args,**kwargs): 
     return HttpResponse('Index')
 
-def popular (request,page): 
+def popular (request): 
     try:
         page = int(request.GET.get("page"))
     except ValueError:
