@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User 
 
 class QuestionManager(models.Manager):                                          
-        def index(self):                                                              
+        def new(self):                                                              
                 return self.order_by('-id')                                                          
         def popular(self):                                                          
                 return self.order_by('-rating')
