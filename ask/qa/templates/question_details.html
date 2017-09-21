@@ -1,4 +1,4 @@
 <h1>{{ question.title }} - {{ question.text }}</h1>
-{% for answer in answers %}
+{% for answer in question.answer_set.all %}
     <p>{{ answer.text }}</p> 
 {% endfor %}
