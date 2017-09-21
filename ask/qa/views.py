@@ -29,7 +29,6 @@ def popular (request,page):
         'paginator': paginator,
         'questions': page.object_list,
         'page': page, })
-    })
 
 @require_GET
 def question_details (request,id): 
