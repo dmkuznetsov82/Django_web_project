@@ -18,7 +18,7 @@ def index (request):
     except TypeError:
         page = 1
         
-    questions = Question.objects.popular()
+    questions = Question.objects.new()
     limit = 10
     paginator = Paginator(questions,limit)
     page = paginator.page(page)
