@@ -12,6 +12,7 @@ def test (request,*args,**kwargs):
 def index (request,*args,**kwargs): 
     return HttpResponse('Index')
 
+@require_GET
 def popular (request): 
     try:
         page = int(request.GET.get("page"))
