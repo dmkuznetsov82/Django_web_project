@@ -49,16 +49,19 @@ def popular (request):
         'questions': page.object_list,
         'page': page, })
 
-@require_GET
 def question_details (request,id): 
     question = get_object_or_404(Question, id=id)
-    #try:
-    #    answers = Answer.objects.filter(question=question)
-    #except Answer.DoesNotExist:
-    #        answers = None 
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save()
+            url = question.get_url()
+            return HttpResponseRedirect(url)
+    else:
+        form = AnswerForm()
     return render(request, 'question_details.html', {
         'question' : question,
-     #   'answers' : answers.all()[:],
+        'form' : form,
     })
 
 def ask_add (request): 
