@@ -1,0 +1,31 @@
+from django import forms
+
+class AskForm(forms.Form):
+    title = forms.CharField()
+    text = forms.CharField()
+    
+    def __init__(self,**kwargs):
+        super(AskForm,self).__init__(**kwargs)
+        
+    def clean(self): pass
+    
+    def save(self):
+        question = Question.objects.create(**self.cleaned_data)
+        question.save()
+        return question
+        
+
+class AnswerForm(forms.Form):
+    text = forms.CharField()
+    question = forms.CharField()
+    
+    def __init__(self,**kwargs):
+        super(AnswerForm,self).__init__(**kwargs)
+        
+    def clean(self): pass
+    
+    def save(self):
+        answer = Answer.objects.create(**self.cleaned_data)
+        answer.save()
+        return answer
+    
