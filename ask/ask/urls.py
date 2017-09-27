@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
-from qa.views import index, popular, test
+from qa.views import index, popular, test, ask_add
 
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
