@@ -1,11 +1,12 @@
 from django import forms
+from qa.models import Question, Answer
 
 class AskForm(forms.Form):
     title = forms.CharField()
     text = forms.CharField()
     
-    def __init__(self,**kwargs):
-        super(AskForm,self).__init__(**kwargs)
+ #   def __init__(self,**kwargs):
+ #       super(AskForm,self).__init__(**kwargs)
         
     def clean(self): pass
     
@@ -20,8 +21,8 @@ class AnswerForm(forms.Form):
     text = forms.CharField()
     question = forms.IntegerField()
     
-    def __init__(self,**kwargs):
-        super(AnswerForm,self).__init__(**kwargs)
+ #   def __init__(self,**kwargs):
+ #       super(AnswerForm,self).__init__(**kwargs)
         
     def clean(self): pass
     
