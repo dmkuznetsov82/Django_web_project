@@ -18,7 +18,7 @@ class AskForm(forms.Form):
 
 class AnswerForm(forms.Form):
     text = forms.CharField()
-    question = forms.CharField()
+    question = forms.IntegerField()
     
     def __init__(self,**kwargs):
         super(AnswerForm,self).__init__(**kwargs)
