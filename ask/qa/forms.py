@@ -1,5 +1,17 @@
 from django import forms
-from qa.models import Question, Answer
+from qa.models import Question, Answer, User
+
+class SignupForm(forms.Form):
+    username = forms.CharField()
+    email = forms.CharField()
+    password = forms.CharField()
+    
+    def clean(self): pass
+    
+    def save(self):
+        user = User.objects.create(**self.cleaned_data)
+        user.save()
+        return user
 
 class AskForm(forms.Form):
     title = forms.CharField()
