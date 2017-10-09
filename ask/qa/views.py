@@ -12,17 +12,15 @@ def test (request,*args,**kwargs):
     return HttpResponse('OK')
 
 def signup (request,id): 
-    question = get_object_or_404(Question, id=id)
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
-            answer = form.save()
+            user = form.save()
             url = question.get_url()
             return HttpResponseRedirect(url)
     else:
         form = SignupForm()
     return render(request, 'signup_form.html', {
-        'question' : question,
         'form' : form,
 })
 
