@@ -9,7 +9,7 @@ class SignupForm(forms.Form):
     def clean(self): pass
     
     def save(self):
-        user = User.objects.create(**self.cleaned_data)
+        user = User.(**self.cleaned_data)
         user.save()
         return user
 
