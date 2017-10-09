@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_GET
 from django.core.paginator import Paginator
-from qa.forms import AskForm, AnswerForm
+from qa.forms import AskForm, AnswerForm, SignupForm
 
 
 from qa.models import Question, Answer
@@ -10,6 +10,21 @@ from qa.models import Question, Answer
 
 def test (request,*args,**kwargs): 
     return HttpResponse('OK')
+
+def signup (request,id): 
+    question = get_object_or_404(Question, id=id)
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            answer = form.save()
+            url = question.get_url()
+            return HttpResponseRedirect(url)
+    else:
+        form = SignupForm()
+    return render(request, 'signup_form.html', {
+        'question' : question,
+        'form' : form,
+})
 
 @require_GET
 def index (request): 
@@ -53,6 +68,7 @@ def question_details (request,id):
     question = get_object_or_404(Question, id=id)
     if request.method == "POST":
         form = AnswerForm(request.POST)
+        form._user = request.user
         if form.is_valid():
             answer = form.save()
             url = question.get_url()
@@ -67,6 +83,7 @@ def question_details (request,id):
 def ask_add (request): 
     if request.method == "POST":
         form = AskForm(request.POST)
+        form._user = request.user
         if form.is_valid():
             question = form.save()
             url = question.get_url()
