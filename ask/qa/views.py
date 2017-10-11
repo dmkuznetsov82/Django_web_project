@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_GET
 from django.core.paginator import Paginator
-from qa.forms import AskForm, AnswerForm, SignupForm
+from qa.forms import AskForm, AnswerForm, SignupForm, LoginForm
 from django.contrib.auth import authenticate, login
 
 
