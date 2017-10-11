@@ -17,11 +17,32 @@ def signup (request,id):
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
+            username = form.cleaned_data["username"]
+            password = form.raw_password
+            user = authenticate(username=username, password=password)
+            print(type(user))
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+            return HttpResponseRedirect('/')
+    else:
+        form = SignupForm()
+    return render(request, 'signup_form.html', {
+        'form': form,
+        'user': request.user,
+        'session': request.session, })
+})
+
+def login (request,id): 
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
             url = question.get_url()
             return HttpResponseRedirect(url)
     else:
         form = SignupForm()
-    return render(request, 'signup_form.html', {
+    return render(request, 'login_form.html', {
         'form' : form,
 })
 
