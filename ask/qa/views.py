@@ -32,7 +32,7 @@ def signup (request):
         'user': request.user,
         'session': request.session, })
 
-def login (request): 
+def login_view (request): 
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
