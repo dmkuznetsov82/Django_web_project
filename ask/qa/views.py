@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_GET
 from django.core.paginator import Paginator
 from qa.forms import AskForm, AnswerForm, SignupForm
+from django.contrib.auth import authenticate, login
 
 
 from qa.models import Question, Answer
