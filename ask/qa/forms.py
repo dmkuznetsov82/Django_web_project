@@ -86,7 +86,7 @@ class AnswerForm(forms.Form):
     
     def save(self):
         answer = Answer.objects.create(**self.cleaned_data)
-        #answer.author_id = self._user.id
+        answer.author_id = self._user.id
         answer.save()
         return answer
     
