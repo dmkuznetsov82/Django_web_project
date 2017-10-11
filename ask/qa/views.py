@@ -12,7 +12,7 @@ from qa.models import Question, Answer
 def test (request,*args,**kwargs): 
     return HttpResponse('OK')
 
-def signup (request,id): 
+def signup (request): 
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
@@ -32,7 +32,7 @@ def signup (request,id):
         'user': request.user,
         'session': request.session, })
 
-def login (request,id): 
+def login (request): 
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
