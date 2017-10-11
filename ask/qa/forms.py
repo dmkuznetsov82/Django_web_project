@@ -13,29 +13,29 @@ class SignupForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if not username:
-            raise forms.ValidationError('Не задано имя пользователя')
+            raise forms.ValidationError('Username is required but not set')
         try:
             User.objects.get(username=username)
-            raise forms.ValidationError('Такой пользователь уже существует')
+            raise forms.ValidationError('User already exists')
         except User.DoesNotExist:
             pass
-    return username
+        return username
     
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if not email:
-            raise forms.ValidationError('Не указан адрес электронной почты')
-    return email
+            raise forms.ValidationError('Email is required but not set')
+        return email
 
     def clean_password(self):
         password = self.cleaned_data.get('password')
         if not password:
-            raise forms.ValidationError('Не указан пароль')
+            raise forms.ValidationError('Password is required but not set')
         self.raw_password = password
-    return make_password(password)
+        return make_password(password)
     
     def save(self):
-        user = User.(**self.cleaned_data)
+        user = User(**self.cleaned_data)
         user.save()
         return user
     
@@ -46,13 +46,13 @@ class LoginForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if not username:
-            raise forms.ValidationError('Не задано имя пользователя')
+            raise forms.ValidationError('Username is required')
         return username
 
     def clean_password(self):
         password = self.cleaned_data.get('password')
         if not password:
-            raise forms.ValidationError('Не указан пароль')
+            raise forms.ValidationError('Password is required')
         return password
 
     def clean(self):
@@ -61,9 +61,9 @@ class LoginForm(forms.Form):
         try:
             user = User.objects.get(username=username)
         except User.DoesNotExist:
-            raise forms.ValidationError('Неверное имя пользователя или пароль1')
+            raise forms.ValidationError('Incorrect username or password')
         if not user.check_password(password):
-            raise forms.ValidationError('Неверное имя пользователя или пароль2')
+            raise forms.ValidationError('Incorrect username or password')
 
 class AskForm(forms.Form):
     title = forms.CharField()
