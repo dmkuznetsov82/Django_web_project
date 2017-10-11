@@ -47,7 +47,7 @@ def login (request,id):
             return HttpResponseRedirect('/')
     else:
         form = LoginForm()
-    return render(request, 'login.html', {
+    return render(request, 'login_form.html', {
         'form': form,
         'user': request.user,
         'session': request.session, })
