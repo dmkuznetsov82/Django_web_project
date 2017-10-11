@@ -31,20 +31,26 @@ def signup (request,id):
         'form': form,
         'user': request.user,
         'session': request.session, })
-})
 
 def login (request,id): 
     if request.method == "POST":
-        form = SignupForm(request.POST)
+        form = LoginForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            url = question.get_url()
-            return HttpResponseRedirect(url)
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            print(username, password)
+            user = authenticate(username=username, password=password)
+            print(type(user))
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+            return HttpResponseRedirect('/')
     else:
         form = LoginForm()
-    return render(request, 'login_form.html', {
-        'form' : form,
-})
+    return render(request, 'login.html', {
+        'form': form,
+        'user': request.user,
+        'session': request.session, })
 
 @require_GET
 def index (request): 
