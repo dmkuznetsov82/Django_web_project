@@ -41,7 +41,7 @@ def login (request,id):
             url = question.get_url()
             return HttpResponseRedirect(url)
     else:
-        form = SignupForm()
+        form = LoginForm()
     return render(request, 'login_form.html', {
         'form' : form,
 })
